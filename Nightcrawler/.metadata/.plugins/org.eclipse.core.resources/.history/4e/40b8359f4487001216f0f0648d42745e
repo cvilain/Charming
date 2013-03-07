@@ -1,0 +1,7 @@
+package net.Charming.Nightcrawler;
+
+public class TEST {
+	public void Test(){
+		int i = 5;
+	}
+}
