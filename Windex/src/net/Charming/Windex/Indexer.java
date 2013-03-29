@@ -1,6 +1,11 @@
 package net.Charming.Windex;
 
+import java.util.ArrayList;
+import java.util.PriorityQueue;
+
 import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
 
 import redis.clients.jedis.Jedis;
 
@@ -64,18 +69,37 @@ public class Indexer {
 	public void index(String url, Document current_page) {
 		// TODO Auto-generated method stub
 		//doc filled with html
-		//find everything not in brackets
-		//split into words
-		Histogram html_terms = new Histogram();
-		for (String term: html_terms.getArgs().keySet()){
-			//for each word in the histogram
-			//make an indexed url object (url, freq)
+		try{
+			//Extract text from html
+			String text = current_page.body().text();
+			//split into words
+			String[] terms = text.split(" ");
+			//create histogram of terms from array of strings
+			Histogram html_terms = new Histogram();
+			for (String term: terms){
+				String stripped_term = term.replaceAll("\\W", "");
+				html_terms.count(stripped_term);
+			}
+			System.out.println(html_terms);
+		
+			for (String term2: html_terms.getArgs().keySet()){
+				//for each word in the histogram
+				//make an indexed url object (url, freq)
+				IndexedURL url_obj = new IndexedURL(html_terms.freq(term2),url);
+				//PriorityQueue pqueue = 	this.getJedis().get(term2);
+			}
+		}
+		catch (Exception err){
+			System.out.println(err);
+		}
+
+		
 			//Get priorityqueue from database
 			//Insert object into priorityqueue
 			//Save priorityqueue to database
 	
 		
-		}
+		//}
 				
 	}
 }

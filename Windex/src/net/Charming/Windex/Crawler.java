@@ -88,6 +88,7 @@ public class Crawler {
 			*/
 			//Pass data to indexer
 			this.getIndexer().index(url, current_page);
+			return;
 		} else{
 			for (String link : next_links){
 				if (link != url){
