@@ -25,6 +25,7 @@ public class Indexer {
 		this.setJedis(new Jedis(this.getHost(), this.getPort()));
 		this.getJedis().auth(this.getAuth());
 		this.getJedis().connect();
+		this.getJedis().flushAll();
 		System.out.println("Connected");
 	}
 	
@@ -68,6 +69,7 @@ public class Indexer {
 //make sure to pass in URL too
 	public void index(String url, Document current_page) {
 		// TODO Auto-generated method stub
+		System.out.println("Now indexing " + url);
 		//doc filled with html
 		try{
 			//Extract text from html
@@ -80,26 +82,15 @@ public class Indexer {
 				String stripped_term = term.replaceAll("\\W", "");
 				html_terms.count(stripped_term);
 			}
-			System.out.println(html_terms);
-		
+			
 			for (String term2: html_terms.getArgs().keySet()){
-				//for each word in the histogram
-				//make an indexed url object (url, freq)
-				IndexedURL url_obj = new IndexedURL(html_terms.freq(term2),url);
-				//PriorityQueue pqueue = 	this.getJedis().get(term2);
+				// What are we adding to the database?
+				//System.out.println(term2 + ": " + html_terms.getArgs().get(term2) + " at " + url);				
+				this.getJedis().zadd(term2, html_terms.getArgs().get(term2), url);
 			}
 		}
 		catch (Exception err){
 			System.out.println(err);
 		}
-
-		
-			//Get priorityqueue from database
-			//Insert object into priorityqueue
-			//Save priorityqueue to database
-	
-		
-		//}
-				
 	}
 }

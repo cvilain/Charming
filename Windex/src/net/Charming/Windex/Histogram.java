@@ -9,26 +9,26 @@ import java.util.ArrayList;
  */
 public class Histogram {
 
-	private HashMap<String, Integer> args;
+	private HashMap<String, Double> args;
 	/**
 	 * @param args
 	 */
 	public Histogram(){
-		this.setArgs(new HashMap<String, Integer>());
+		this.setArgs(new HashMap<String, Double>());
 		
 	}
 	
 	/**
 	 * @return the args
 	 */
-	public HashMap<String, Integer> getArgs() {
+	public HashMap<String, Double> getArgs() {
 		return args;
 	}
 
 	/**
 	 * @param the args to set
 	 */
-	public void setArgs(HashMap<String, Integer> args) {
+	public void setArgs(HashMap<String, Double> args) {
 		this.args = args;
 	}
 	
@@ -48,14 +48,14 @@ public class Histogram {
 	
 	public void count(String s){
 		if (this.getArgs().containsKey(s)){
-			int current_val = this.getArgs().get(s);
-			this.getArgs().put(s,current_val + 1);
+			double current_val = this.getArgs().get(s);
+			this.getArgs().put(s, current_val + 1);
 		}else{
-			this.getArgs().put(s,1);			
+			this.getArgs().put(s,(double) 1);			
 		}	
 	}
 	
-	public int freq(String s){
+	public double freq(String s){
 		return this.getArgs().get(s);
 	}
 	
