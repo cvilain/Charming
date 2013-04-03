@@ -18,8 +18,6 @@ public class WindexTest {
 		// TODO Auto-generated method stub
 		Indexer windex = new Indexer();
 		Crawler crawler = new Crawler("http://www.olin.edu", windex);
-
-		
 		
 		crawler.crawl(1, "http://www.olin.edu");
 		

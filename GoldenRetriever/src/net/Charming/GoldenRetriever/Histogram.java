@@ -1,4 +1,4 @@
-package net.Charming.Windex;
+package net.Charming.GoldenRetriever;
 
 import java.util.HashMap;
 import java.util.ArrayList;
