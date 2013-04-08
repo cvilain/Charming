@@ -72,7 +72,7 @@ public class Crawler {
 		}
 		ArrayList<String> next_links = new ArrayList<String>();
 		next_links = parseHTML(url, current_page);
-		if (depth==2){
+		if (depth==3){
 			 //System.out.println("Current url is " + url);
 			this.linkMap.put(url, current_page.toString());
 			/*

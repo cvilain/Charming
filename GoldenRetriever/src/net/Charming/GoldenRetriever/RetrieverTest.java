@@ -7,6 +7,6 @@ public class RetrieverTest {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		GoldenRetriever retriever = new GoldenRetriever("Olin");
+		GoldenRetriever retriever = new GoldenRetriever("student body");
 	}
 }
